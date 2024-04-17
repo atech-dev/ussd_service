@@ -133,7 +133,7 @@ public class UssdServicePlugin implements FlutterPlugin, MethodCallHandler {
           @Override
           public void onReceiveUssdResponse(
               TelephonyManager telephonyManager, String request, CharSequence response) {
-            c.complete(response.toString());
+            c.complete(response != null ? response.toString() : null);
           }
 
           @Override

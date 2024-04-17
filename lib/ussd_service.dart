@@ -10,12 +10,12 @@ class UssdService {
       MethodChannel("com.vincentkammerer.ussd_service/plugin_channel");
 
   /// Performs the USSD request and returns the response
-  static Future<String> makeRequest(
+  static Future<String?> makeRequest(
     int subscriptionId,
     String code, [
     Duration timeout = const Duration(seconds: 10),
   ]) async {
-    final String response = await _channel
+    final String? response = await _channel
         .invokeMethod(
           "makeRequest",
           {"subscriptionId": subscriptionId, "code": code},

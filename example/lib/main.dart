@@ -25,14 +25,14 @@ class _MyAppState extends State<MyApp> {
   RequestState? _requestState;
   String _requestCode = "";
   String _responseCode = "";
-  String _responseMessage = "";
+  String? _responseMessage = "";
 
   Future<void> sendUssdRequest() async {
     setState(() {
       _requestState = RequestState.ongoing;
     });
     try {
-      String responseMessage;
+      String? responseMessage;
       await Permission.phone.request();
       if (!await Permission.phone.isGranted) {
         throw Exception("permission missing");
@@ -105,7 +105,7 @@ class _MyAppState extends State<MyApp> {
                   const SizedBox(height: 10),
                   const Text('Response was:'),
                   Text(
-                    _responseMessage,
+                    _responseMessage ?? "",
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -120,7 +120,7 @@ class _MyAppState extends State<MyApp> {
                   const SizedBox(height: 10),
                   const Text('Error message was:'),
                   Text(
-                    _responseMessage,
+                    _responseMessage ?? "",
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ]
